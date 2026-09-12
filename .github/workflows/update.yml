@@ -12,6 +12,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -28,5 +30,6 @@ jobs:
             echo "No changes"
           else
             git commit -m "Auto-update $(date +'%Y-%m-%d %H:%M')"
+            git pull --rebase origin main
             git push
           fi
